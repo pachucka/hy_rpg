@@ -8,9 +8,13 @@ public class AreaEntrance : MonoBehaviour
 
     private void Start()
     {
-        if(transitionName == PlayerController.instance.areaTransitionName)
+        if (PlayerController.instance != null)
         {
-            PlayerController.instance.transform.position = transform.position;
+            if (transitionName == PlayerController.instance.areaTransitionName)
+            {
+                PlayerController.instance.transform.position = transform.position;
+            }
         }
+        
     }
 }

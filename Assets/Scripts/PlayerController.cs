@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     public string areaTransitionName;
 
+    public Vector2 initialPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         DontDestroyOnLoad(gameObject);
     }
 
