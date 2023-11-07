@@ -38,11 +38,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background-border
+    uniqueID: 3844244685
+    locked: 0
   - name: Background
     uniqueID: 1944604897
     locked: 0
   - name: Background-Walkable
     uniqueID: 151268863
+    locked: 0
+  - name: Background-Walkable-2
+    uniqueID: 140627605
     locked: 0
   - name: Background-Unwalkable
     uniqueID: 4187200025
