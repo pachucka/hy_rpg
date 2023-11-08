@@ -210,7 +210,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1944604897
-  m_SortingLayer: -4
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 04153caa790d37646bf81b5c71ef2942, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -340,6 +340,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 586672381171823810, guid: 814abfe2770d9504fa9562dec20e52fb, type: 3}
+      propertyPath: transitionName
+      value: Countryside-2
+      objectReference: {fileID: 0}
     - target: {fileID: 884055312041377408, guid: 814abfe2770d9504fa9562dec20e52fb, type: 3}
       propertyPath: entrance
       value: 
