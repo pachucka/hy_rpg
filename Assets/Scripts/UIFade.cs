@@ -9,7 +9,7 @@ public class UIFade : MonoBehaviour
 
     public Image fadeScreen;
     private bool shouldFadeToBlack, shouldFadeFromBlack;
-    private float fadeSpeed = 3;
+    private float fadeSpeed = 4;
 
     private void Start()
     {
@@ -25,7 +25,6 @@ public class UIFade : MonoBehaviour
             if(fadeScreen.color.a == 1f)
             {
                 shouldFadeToBlack = false;
-                Debug.Log("should fade to black == flase");
             }
         }
         if (shouldFadeFromBlack)
@@ -33,7 +32,6 @@ public class UIFade : MonoBehaviour
             fadeScreen.color = new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, Mathf.MoveTowards(fadeScreen.color.a, 0f, fadeSpeed * Time.deltaTime));
             if (fadeScreen.color.a == 0f)
             {
-                Debug.Log("fadeScreen.color.a == 0f");
                 shouldFadeFromBlack = false;
             }
         }
@@ -47,7 +45,6 @@ public class UIFade : MonoBehaviour
 
     public void FadeFromBlack()
     {
-        Debug.Log("fadefromblack func");
         shouldFadeToBlack = false;
         shouldFadeFromBlack = true;
     }

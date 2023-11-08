@@ -108,7 +108,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &2969969844921982039
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   areaTransitionName: 
+  initialPos: {x: 0, y: 0}
 --- !u!95 &2969969844921982026
 Animator:
   serializedVersion: 5
