@@ -6,6 +6,12 @@ public class DialogueActivator : MonoBehaviour
 {
     public string[] lines;
     public bool canActivate;
+    public static DialogueActivator instance;
+
+    private void Start()
+    {
+        instance = this;
+    }
 
     private void Update()
     {

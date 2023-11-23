@@ -41,7 +41,8 @@ public class DialogueManager : MonoBehaviour
                         if (currentLine >= dialogueLines.Length)
                         {
                             dialogueBox.SetActive(false);
-                            PlayerController.instance.canMove = true;
+                            //PlayerController.instance.canMove = true;
+                            GameManager.instance.dialogueActive = false;
                         }
                         else
                         {
@@ -68,7 +69,8 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
         dialogueBox.SetActive(true);
         justStarted = true;
-        PlayerController.instance.canMove = false;
+        //PlayerController.instance.canMove = false;
+        GameManager.instance.dialogueActive = true;
 
         StartTyping(dialogueLines[currentLine]);
     }
