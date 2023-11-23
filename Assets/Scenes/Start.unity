@@ -269,11 +269,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2969969844921982038, guid: 53581722358528143b3287832e49b49d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.06
+      value: -8.14
       objectReference: {fileID: 0}
     - target: {fileID: 2969969844921982038, guid: 53581722358528143b3287832e49b49d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.89
+      value: 4.21
       objectReference: {fileID: 0}
     - target: {fileID: 2969969844921982038, guid: 53581722358528143b3287832e49b49d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13849,10 +13849,10 @@ RectTransform:
   m_Father: {fileID: 117717603}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.6936, y: -12.8175}
-  m_SizeDelta: {x: 1731.3179, y: 143.985}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 4.6936035, y: 205.1825}
+  m_SizeDelta: {x: 1731.3179, y: 143.98499}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1188224705
 MonoBehaviour:
@@ -13947,6 +13947,10 @@ PrefabInstance:
     - target: {fileID: 9093471193413376340, guid: 53fa3a2f08129e0468165c9cd8223fab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093471193413376341, guid: 53fa3a2f08129e0468165c9cd8223fab, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9093471193413376342, guid: 53fa3a2f08129e0468165c9cd8223fab, type: 3}
       propertyPath: map
@@ -14200,7 +14204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462864415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.65, y: 7.12, z: 0}
+  m_LocalPosition: {x: -6.23, y: 4.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14288,8 +14292,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.025315762, y: 0.0078572035}
-  m_Size: {x: 0.6327734, y: 0.9805391}
+  m_Offset: {x: -0.025315762, y: -0.16602564}
+  m_Size: {x: 0.6327734, y: 0.6327734}
   m_Direction: 0
 --- !u!1 &1779704668
 GameObject:

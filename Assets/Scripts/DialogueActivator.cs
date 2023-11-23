@@ -5,7 +5,7 @@ using UnityEngine;
 public class DialogueActivator : MonoBehaviour
 {
     public string[] lines;
-    private bool canActivate;
+    public bool canActivate;
 
     private void Update()
     {
@@ -23,7 +23,7 @@ public class DialogueActivator : MonoBehaviour
         }
     }
 
-    private void OnTriggerExitr2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
