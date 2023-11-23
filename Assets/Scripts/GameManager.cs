@@ -29,4 +29,17 @@ public class GameManager : MonoBehaviour
             PlayerController.instance.canMove = true;
         }
     }
+
+    public Item getDeatails(string itemName)
+    {
+        for(int i = 0; i < reference.Length; i++)
+        {
+            if(reference[i].itemName == itemName)
+            {
+                return reference[i];
+            }
+        }
+
+        return null;
+    }
 }
