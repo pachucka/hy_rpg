@@ -2,20 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[CreateAssetMenu(fileName = "new Item", menuName = "Item/Create New Item")]
+public class Item : ScriptableObject
 {
-    // What kind of item is it
-    public bool isItem, isWeapon;
-    public string itemName, itemDescription;
-    public int price;
-    // Sprite of the item
-    public Sprite itemSprite;
-    // How much health / strength does it give
-    public int amountToChange;
-    // What it gives (HP, strength)
-    public bool affectHP, affectStrength;
-    // current weapon strength
-    public int weaponStrength;
-
-
+    public int id;
+    public string ItemName;
+    public int value;
+    public Sprite icon;
 }

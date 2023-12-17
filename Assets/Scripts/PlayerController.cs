@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //
+    public int health = 100;
+  
+
+    //
+
     private Rigidbody2D rb;
     public float moveSpeed;
 

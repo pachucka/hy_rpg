@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InGameMenuManager : MonoBehaviour
 {
@@ -8,10 +9,16 @@ public class InGameMenuManager : MonoBehaviour
 
     public GameObject menu, chatBox;
     public GameObject[] windows;
+    public Text health;
+
+    public ItemButton[] itemsBtns;
+
 
     // Update is called once per frame
     void Update()
     {
+        updateStats();
+
         if (!menu.activeInHierarchy && !chatBox.activeInHierarchy)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -22,8 +29,17 @@ public class InGameMenuManager : MonoBehaviour
                 GameManager.instance.menuOpen = true;
                 DialogueActivator.instance.canActivate = false;
             }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                canActivateDialogue = DialogueActivator.instance.canActivate;
+                menu.SetActive(true);
+                windows[0].SetActive(!windows[0].activeInHierarchy);
+                GameManager.instance.menuOpen = true;
+                DialogueActivator.instance.canActivate = false;
+            }
         } else if (menu.activeInHierarchy)
         {
+            
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 closeMenu();
@@ -64,6 +80,8 @@ public class InGameMenuManager : MonoBehaviour
 
     public void updateStats()
     {
-
+        health.text = $"Health: {PlayerController.instance.health.ToString()}";
     }
+
+    
 }
