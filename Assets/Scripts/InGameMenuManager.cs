@@ -13,7 +13,6 @@ public class InGameMenuManager : MonoBehaviour
 
     public ItemButton[] itemsBtns;
 
-
     // Update is called once per frame
     void Update()
     {
@@ -23,14 +22,15 @@ public class InGameMenuManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                InventoryManager.instance.listItems();
                 canActivateDialogue = DialogueActivator.instance.canActivate;
                 menu.SetActive(true);
-                //PlayerController.instance.canMove = false;
                 GameManager.instance.menuOpen = true;
                 DialogueActivator.instance.canActivate = false;
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
+                InventoryManager.instance.listItems();
                 canActivateDialogue = DialogueActivator.instance.canActivate;
                 menu.SetActive(true);
                 windows[0].SetActive(!windows[0].activeInHierarchy);
@@ -64,7 +64,6 @@ public class InGameMenuManager : MonoBehaviour
     public void closeMenu()
     {
         menu.SetActive(false);
-        //PlayerController.instance.canMove = true;
         GameManager.instance.menuOpen = false;
         if (canActivateDialogue)
         {
