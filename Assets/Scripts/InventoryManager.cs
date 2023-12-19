@@ -39,8 +39,28 @@ public class InventoryManager : MonoBehaviour
             var itemValue = obj.GetComponentInChildren<Text>();
             var itemIcon = obj.GetComponentInChildren<Image>();
 
-            itemValue.text = item.value.ToString();
+            itemValue.text = item.id.ToString();
             itemIcon.sprite = item.icon;
+        }
+
+    }
+
+    public void removeItemByButton(int id)
+    {
+        Item itemToRemove = null;
+
+        foreach (var item in Items)
+        {
+            if(item.id == id)
+            {
+                itemToRemove = item;
+                break;
+            }
+        }
+
+        if (itemToRemove != null)
+        {
+            Items.Remove(itemToRemove);
         }
 
     }
