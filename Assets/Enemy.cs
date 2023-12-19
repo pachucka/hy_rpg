@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float stoppingDistance;
     public float retreatDistance;
+    public float maxDistance;
 
     private float timeBetweenShots;
     public float start;
@@ -22,24 +23,41 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if(Vector2.Distance(transform.position, player.position) > stoppingDistance)
+        if(Vector2.Distance(transform.position, player.position) < maxDistance)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        } else if(Vector2.Distance(transform.position, player.position) < stoppingDistance && Vector2.Distance(transform.position, player.position) > retreatDistance)
-        {
-            transform.position = this.transform.position;
-        } else if(Vector2.Distance(transform.position, player.position) < retreatDistance)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
-        }
+            if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            }
+            else if (Vector2.Distance(transform.position, player.position) < stoppingDistance && Vector2.Distance(transform.position, player.position) > retreatDistance)
+            {
+                transform.position = this.transform.position;
+            }
+            else if (Vector2.Distance(transform.position, player.position) < retreatDistance)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
+            }
 
-        if(timeBetweenShots <= 0)
-        {
-            Instantiate(projectile, transform.position, Quaternion.identity);
-            timeBetweenShots = start;
+            if (timeBetweenShots <= 0)
+            {
+                Instantiate(projectile, transform.position, Quaternion.identity);
+                timeBetweenShots = start;
+            }
+            else
+            {
+                timeBetweenShots -= Time.deltaTime;
+            }
         } else
         {
-            timeBetweenShots -= Time.deltaTime;
+            transform.position = this.transform.position;
+            StopShooting();
         }
+
+    }
+
+    private void StopShooting()
+    {
+        // Zatrzymaj strzelanie
+        timeBetweenShots = start;
     }
 }
