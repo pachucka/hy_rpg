@@ -53,6 +53,14 @@ public class Enemy : MonoBehaviour
             StopShooting();
         }
 
+        if(GameManager.instance.dialogueActive || GameManager.instance.menuOpen)
+        {
+            transform.position = this.transform.position;
+            StopShooting();
+        }
+
+
+
     }
 
     private void StopShooting()
