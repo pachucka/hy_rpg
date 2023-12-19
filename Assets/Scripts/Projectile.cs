@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Destroy(gameObject);
-
+            PlayerController.instance.health -= 10;
         }
     }
 }

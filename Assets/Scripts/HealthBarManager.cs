@@ -10,13 +10,13 @@ public class HealthBarManager : MonoBehaviour
     {
         int health = PlayerController.instance.health;
 
-        // Wy³¹cz wszystkie elementy pasków ¿ycia
+        // turning all lives off
         foreach (GameObject element in healthBarElements)
         {
             element.SetActive(false);
         }
 
-        // W³¹cz odpowiedni¹ iloœæ elementów pasków ¿ycia na podstawie aktualnego zdrowia
+        // setting the right amount of lives on
         int healthIndex = Mathf.Clamp((health - 1) / 10, 0, healthBarElements.Length - 1);
 
         for (int i = 0; i <= healthIndex; i++)
