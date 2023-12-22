@@ -19,6 +19,11 @@ public class InventoryManager : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void addItem(Item item)
     {
         Items.Add(item);

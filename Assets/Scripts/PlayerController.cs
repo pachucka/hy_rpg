@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //
     public int health = 100;
-  
-
-    //
 
     private Rigidbody2D rb;
     public float moveSpeed;
+    public float timeBetweenShots;
+    private float shootSpeed;
+    public GameObject projectile;
 
     private Animator animator;
 
@@ -26,6 +25,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        shootSpeed = timeBetweenShots;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         if(instance == null)
@@ -61,5 +61,23 @@ public class PlayerController : MonoBehaviour
                 animator.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
             }
         }
+
+        ShootTowardsMouse();
+    }
+
+    private void ShootTowardsMouse()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (shootSpeed <= 0)
+            {
+                Instantiate(projectile, transform.position, Quaternion.identity);
+                shootSpeed = timeBetweenShots;
+            }
+        }
+        shootSpeed -= Time.deltaTime;
     }
 }
