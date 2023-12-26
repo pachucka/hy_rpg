@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int Hp = 50;
+    private int Hp = 50;
 
     public float speed;
     public float stoppingDistance;
@@ -97,22 +97,5 @@ public class Enemy : MonoBehaviour
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         // Nie zmieniaj skali, gdy poruszasz siê pionowo
-    }
-
-    public void takeDamage(int amount)
-    {
-        Hp -= amount;
-        Debug.Log("ouch");
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("Collision with: " + other.tag);
-
-        if (other.CompareTag("PlayerProjectile"))
-        {
-            Debug.Log("PlayerProjectile hit!");
-            // Dodaj resztê kodu obs³uguj¹cego kolizjê z pociskiem gracza
-        }
     }
 }
