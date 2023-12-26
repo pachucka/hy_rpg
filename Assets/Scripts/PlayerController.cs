@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour
 
     public bool canMove = true;
 
+    [SerializeField] private float shootCooldown;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject[] fireballs;
+
+    private float coolDownTimer = Mathf.Infinity;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,22 +68,52 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        ShootTowardsMouse();
-    }
-
-    private void ShootTowardsMouse()
-    {
-        
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButton(0) && coolDownTimer > shootCooldown)
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            if (shootSpeed <= 0)
-            {
-                Instantiate(projectile, transform.position, Quaternion.identity);
-                shootSpeed = timeBetweenShots;
-            }
+            Attack();
         }
-        shootSpeed -= Time.deltaTime;
+
+        coolDownTimer += Time.deltaTime;
     }
+
+    private void Attack()
+    {
+        coolDownTimer = 0;
+
+        fireballs[FindFireball()].transform.position = firePoint.position;
+        fireballs[FindFireball()].GetComponent<PlayerProjectile>().SetDirection(Mathf.Sign(transform.localScale.x));
+    }
+
+    private int FindFireball()
+    {
+        for(int i = 0; i < fireballs.Length; i++)
+        {
+            if (!fireballs[i].activeInHierarchy)
+            {
+                return i;
+            }
+
+        }
+        return 0;
+    }
+
+
+
+
+    //private void ShootTowardsMouse()
+    //{
+
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        Vector2 playerPos = rb.transform.position;
+    //        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+    //        if (shootSpeed <= 0)
+    //        {
+    //            Instantiate(projectile, playerPos, Quaternion.identity);
+    //            shootSpeed = timeBetweenShots;
+    //        }
+    //    }
+    //    shootSpeed -= Time.deltaTime;
+    //}
 }
