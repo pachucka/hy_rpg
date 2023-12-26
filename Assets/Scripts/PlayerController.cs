@@ -22,16 +22,20 @@ public class PlayerController : MonoBehaviour
 
     public bool canMove = true;
 
+    public Transform shootPoint;
+    private bool isMoving = false;
+
     // Start is called before the first frame update
     void Start()
     {
         shootSpeed = timeBetweenShots;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
-        } else
+        }
+        else
         {
             Destroy(gameObject);
         }
@@ -45,7 +49,9 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
-        } else
+            isMoving = rb.velocity.magnitude > 0; // Aktualizuje isMoving w zale¿noœci od prêdkoœci gracza
+        }
+        else
         {
             rb.velocity = Vector2.zero;
         }
@@ -53,28 +59,42 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("moveX", rb.velocity.x);
         animator.SetFloat("moveY", rb.velocity.y);
 
-        if(Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
+        if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
         {
-            if(canMove)
+            if (canMove)
             {
                 animator.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
                 animator.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
             }
         }
 
+        if (isMoving)
+        {
+            UpdateShootPointPosition();
+        }
+
         ShootTowardsMouse();
     }
 
+    private void UpdateShootPointPosition()
+    {
+        Vector3 lookDirection = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0f).normalized;
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        float distanceFromPlayer = 0.8f;
+        Vector3 offset = lookDirection * distanceFromPlayer;
+
+        shootPoint.localPosition = offset;
+        shootPoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+
     private void ShootTowardsMouse()
     {
-        
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
             if (shootSpeed <= 0)
             {
-                Instantiate(projectile, transform.position, Quaternion.identity);
+                Instantiate(projectile, shootPoint.position, shootPoint.rotation);
                 shootSpeed = timeBetweenShots;
             }
         }
