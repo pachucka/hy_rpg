@@ -4,7 +4,14 @@ using System.Collections;
 
 public class ButtonClickHandler : MonoBehaviour
 {
-    private Coroutine speedBoostCoroutine;
+    public bool speedActive = false;
+    private float speedTime = 5f;
+    private float originalMoveSpeed;
+
+    private void Start()
+    {
+        originalMoveSpeed = PlayerController.instance.moveSpeed;
+    }
 
     public void DestroyButtonOnClick()
     {
@@ -18,31 +25,22 @@ public class ButtonClickHandler : MonoBehaviour
                 Destroy(gameObject);
                 PlayerController.instance.health += 10;
             }
-            else if (int.Parse(itemValueText.text) == 2 && speedBoostCoroutine == null)
+            else if (int.Parse(itemValueText.text) == 2)
             {
                 InventoryManager.instance.removeItemByButton(int.Parse(itemValueText.text));
                 Destroy(gameObject);
 
-                // Zapisz oryginaln¹ wartoœæ moveSpeed tylko raz przed pierwszym klikniêciem
-                float originalMoveSpeed = PlayerController.instance.moveSpeed;
-
                 // Zwiêksz moveSpeed o 5
                 PlayerController.instance.moveSpeed += 5;
+                speedActive = true;
+                PlayerController.instance.speedUp();
 
-                // Uruchom coroutine, aby przywróciæ pierwotn¹ wartoœæ moveSpeed po okreœlonym czasie
-                speedBoostCoroutine = StartCoroutine(RestoreMoveSpeedAfterDelay(2f, originalMoveSpeed)); // Okreœl czas trwania boosta
             }
         }
     }
 
-    private IEnumerator RestoreMoveSpeedAfterDelay(float delay, float originalMoveSpeed)
+    private void ResetSpeed()
     {
-        yield return new WaitForSeconds(delay);
-
-        // Przywróæ pierwotn¹ wartoœæ moveSpeed
         PlayerController.instance.moveSpeed = originalMoveSpeed;
-
-        // Zresetuj referencjê do coroutine
-        speedBoostCoroutine = null;
     }
 }

@@ -25,7 +25,7 @@ public class ItemPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (InventoryManager.instance.Items.Count < InventoryManager.instance.INVENTORY_CAPACITY)
+        if (InventoryManager.instance.Items.Count < InventoryManager.instance.INVENTORY_CAPACITY && other.CompareTag("Player"))
         {
             Pickup();
         }

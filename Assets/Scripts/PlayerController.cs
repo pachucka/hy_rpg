@@ -5,11 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public int health = 100;
+    private float shootSpeed = 1;
+    public int damage = 10;
+
+    public bool speedActive = false;
+    private float speedTime = 5f;
+    private float originalMoveSpeed;
 
     private Rigidbody2D rb;
     public float moveSpeed;
     public float timeBetweenShots;
-    private float shootSpeed;
     public GameObject projectile;
 
     private Animator animator;
@@ -41,6 +46,8 @@ public class PlayerController : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+
+        originalMoveSpeed = moveSpeed;
     }
 
     // Update is called once per frame
@@ -74,13 +81,23 @@ public class PlayerController : MonoBehaviour
         }
 
         ShootTowardsMouse();
+        if (speedActive)
+        {
+            Debug.Log(speedTime);
+            if (speedTime <= 0)
+            {
+                speedActive = false;
+                moveSpeed = originalMoveSpeed;
+            }
+            speedTime -= Time.deltaTime;
+        }
     }
 
     private void UpdateShootPointPosition()
     {
         Vector3 lookDirection = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0f).normalized;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        float distanceFromPlayer = 0.8f;
+        float distanceFromPlayer = 0.5f;
         Vector3 offset = lookDirection * distanceFromPlayer;
 
         shootPoint.localPosition = offset;
@@ -99,5 +116,10 @@ public class PlayerController : MonoBehaviour
             }
         }
         shootSpeed -= Time.deltaTime;
+    }
+
+    public void speedUp()
+    {
+        speedActive = true;
     }
 }

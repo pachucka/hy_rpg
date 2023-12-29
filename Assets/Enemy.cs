@@ -72,7 +72,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
     private void StopShooting()
     {
         // Zatrzymaj strzelanie
@@ -81,7 +80,7 @@ public class Enemy : MonoBehaviour
 
     private void die()
     {
-
+        Destroy(gameObject);
     }
 
     private void FlipSprite(float direction)
@@ -97,5 +96,10 @@ public class Enemy : MonoBehaviour
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         // Nie zmieniaj skali, gdy poruszasz siê pionowo
+    }
+
+    public void takeDamage(int hp)
+    {
+        Hp -= hp;
     }
 }
