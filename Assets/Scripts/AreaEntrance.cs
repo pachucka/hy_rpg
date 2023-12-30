@@ -16,8 +16,10 @@ public class AreaEntrance : MonoBehaviour
                 UIFade.instance.FadeFromBlack();
             }
         }
-        
-       UIFade.instance.FadeFromBlack();
-        
+
+        if (UIFade.instance != null)
+        {
+            UIFade.instance.FadeFromBlack();
+        }
     }
 }

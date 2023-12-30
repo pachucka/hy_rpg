@@ -13,6 +13,8 @@ public class InGameMenuManager : MonoBehaviour
 
     public ItemButton[] itemsBtns;
 
+    public GameObject itemWindow;
+
     // Update is called once per frame
     void Update()
     {
@@ -33,9 +35,9 @@ public class InGameMenuManager : MonoBehaviour
                 InventoryManager.instance.listItems();
                 canActivateDialogue = DialogueActivator.instance.canActivate;
                 menu.SetActive(true);
-                windows[0].SetActive(!windows[0].activeInHierarchy);
                 GameManager.instance.menuOpen = true;
                 DialogueActivator.instance.canActivate = false;
+                ActivateItemWindow();
             }
         } else if (menu.activeInHierarchy)
         {
@@ -46,7 +48,10 @@ public class InGameMenuManager : MonoBehaviour
             }
         }
     }
-
+    private void ActivateItemWindow()
+    {
+        itemWindow.SetActive(!itemWindow.activeInHierarchy);
+    }
     public void changeWindow(int windowNum)
     {
         for(int i = 0; i < windows.Length; i++)
@@ -65,13 +70,13 @@ public class InGameMenuManager : MonoBehaviour
     {
         menu.SetActive(false);
         GameManager.instance.menuOpen = false;
-        if (canActivateDialogue)
-        {
-            DialogueActivator.instance.canActivate = true;
-        }
 
-        // closing all menu windows that were opened before the button CLOSE was clicked
-        for(int i = 0; i < windows.Length; i++)
+        // Resetowanie zmiennych
+        canActivateDialogue = false;
+        DialogueActivator.instance.canActivate = true;
+
+        // Zamykanie wszystkich okienek menu, które by³y otwarte przed klikniêciem przycisku "CLOSE"
+        for (int i = 0; i < windows.Length; i++)
         {
             windows[i].SetActive(false);
         }

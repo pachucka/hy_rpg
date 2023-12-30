@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerProjectile : MonoBehaviour
 {
     public float speed = 5f; // Prêdkoœæ poruszania siê strza³u
-    public float constantDistance = 10f; // Sta³a odleg³oœæ od gracza
+    public float constantDistance = 20f; // Sta³a odleg³oœæ od gracza
 
     private Vector2 initialPosition; // Pozycja pocz¹tkowa strza³u
     private Vector2 targetPosition; // Pozycja celu
@@ -46,9 +46,13 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (!other.CompareTag("Player") && !other.CompareTag("Item"))
         {
-            if (other.CompareTag("Enemy"))
+            if (other.CompareTag("SmallDragon"))
             {
-                other.GetComponent<Enemy>().takeDamage(PlayerController.instance.damage);
+                other.GetComponent<Enemy>().TakeDamage(PlayerController.instance.damage);
+            }
+            if (other.CompareTag("Bat"))
+            {
+                other.GetComponent<EnemyBat>().TakeDamage(PlayerController.instance.damage);
             }
             Destroy(gameObject);
         }

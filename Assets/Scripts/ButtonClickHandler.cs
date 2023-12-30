@@ -4,8 +4,6 @@ using System.Collections;
 
 public class ButtonClickHandler : MonoBehaviour
 {
-    public bool speedActive = false;
-    private float speedTime = 5f;
     private float originalMoveSpeed;
 
     private void Start()
@@ -32,7 +30,6 @@ public class ButtonClickHandler : MonoBehaviour
 
                 // Zwiêksz moveSpeed o 5
                 PlayerController.instance.moveSpeed += 5;
-                speedActive = true;
                 PlayerController.instance.speedUp();
 
             }

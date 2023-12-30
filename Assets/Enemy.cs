@@ -98,7 +98,7 @@ public class Enemy : MonoBehaviour
         // Nie zmieniaj skali, gdy poruszasz siê pionowo
     }
 
-    public void takeDamage(int hp)
+    public void TakeDamage(int hp)
     {
         Hp -= hp;
     }
