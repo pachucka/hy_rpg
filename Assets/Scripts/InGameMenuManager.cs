@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class InGameMenuManager : MonoBehaviour
 {
-    private bool canActivateDialogue;
-
     public GameObject menu, chatBox;
     public GameObject[] windows;
     public Text health;
@@ -24,19 +22,16 @@ public class InGameMenuManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                Debug.Log("escape clicked");
                 InventoryManager.instance.listItems();
-                canActivateDialogue = DialogueActivator.instance.canActivate;
                 menu.SetActive(true);
                 GameManager.instance.menuOpen = true;
-                DialogueActivator.instance.canActivate = false;
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
                 InventoryManager.instance.listItems();
-                canActivateDialogue = DialogueActivator.instance.canActivate;
                 menu.SetActive(true);
                 GameManager.instance.menuOpen = true;
-                DialogueActivator.instance.canActivate = false;
                 ActivateItemWindow();
             }
         } else if (menu.activeInHierarchy)
@@ -71,8 +66,6 @@ public class InGameMenuManager : MonoBehaviour
         menu.SetActive(false);
         GameManager.instance.menuOpen = false;
 
-        // Resetowanie zmiennych
-        canActivateDialogue = false;
         DialogueActivator.instance.canActivate = true;
 
         // Zamykanie wszystkich okienek menu, które by³y otwarte przed klikniêciem przycisku "CLOSE"
