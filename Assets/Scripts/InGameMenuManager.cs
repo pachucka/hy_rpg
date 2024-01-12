@@ -49,7 +49,6 @@ public class InGameMenuManager : MonoBehaviour
     }
     public void changeWindow(int windowNum)
     {
-        Debug.Log("change window");
         for(int i = 0; i < windows.Length; i++)
         {
             if(i == windowNum)
