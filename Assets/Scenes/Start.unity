@@ -13987,18 +13987,12 @@ PrefabInstance:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53fa3a2f08129e0468165c9cd8223fab, type: 3}
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of d92921a (Revert "inventory not working")
 --- !u!1 &1358584537 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2288374369530028552, guid: f8f24468934db1f4dbc73903f63fa587, type: 3}
   m_PrefabInstance: {fileID: 2288374368910940754}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
->>>>>>> parent of d92921a (Revert "inventory not working")
-=======
 >>>>>>> parent of d92921a (Revert "inventory not working")
 --- !u!1001 &1489176238
 PrefabInstance:
@@ -28418,10 +28412,7 @@ PrefabInstance:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3b527c356c94ca4295b80fdd4eab2d1, type: 3}
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of d92921a (Revert "inventory not working")
 --- !u!1001 &6209796432310377941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28479,9 +28470,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 814abfe2770d9504fa9562dec20e52fb, type: 3}
-<<<<<<< HEAD
->>>>>>> parent of d92921a (Revert "inventory not working")
-=======
 >>>>>>> parent of d92921a (Revert "inventory not working")
 --- !u!1001 &7801661534641420179
 PrefabInstance:
