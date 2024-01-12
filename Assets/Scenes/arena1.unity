@@ -10798,6 +10798,7 @@ Tilemap:
     e32: 0
     e33: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &518022638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10905,6 +10906,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuOpen: 0
   dialogueActive: 0
+=======
+>>>>>>> parent of d92921a (Revert "inventory not working")
 =======
 >>>>>>> parent of d92921a (Revert "inventory not working")
 --- !u!1 &735170953
@@ -16231,7 +16234,11 @@ Transform:
   - {fileID: 1616435375}
   m_Father: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 4
+=======
+  m_RootOrder: 3
+>>>>>>> parent of d92921a (Revert "inventory not working")
 =======
   m_RootOrder: 3
 >>>>>>> parent of d92921a (Revert "inventory not working")
@@ -18258,7 +18265,11 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &1539119683
+=======
+--- !u!1001 &1499208693
+>>>>>>> parent of d92921a (Revert "inventory not working")
 =======
 --- !u!1001 &1499208693
 >>>>>>> parent of d92921a (Revert "inventory not working")
@@ -18268,6 +18279,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD
 <<<<<<< HEAD
     - target: {fileID: 2288374368031859751, guid: f8f24468934db1f4dbc73903f63fa587, type: 3}
       propertyPath: m_AnchorMax.y
@@ -18843,6 +18855,8 @@ Transform:
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> parent of d92921a (Revert "inventory not working")
     - target: {fileID: 5769756313910550710, guid: c3b527c356c94ca4295b80fdd4eab2d1, type: 3}
       propertyPath: m_Name
       value: HealthPotion
@@ -18893,6 +18907,9 @@ Transform:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3b527c356c94ca4295b80fdd4eab2d1, type: 3}
+<<<<<<< HEAD
+>>>>>>> parent of d92921a (Revert "inventory not working")
+=======
 >>>>>>> parent of d92921a (Revert "inventory not working")
 --- !u!1 &1616435374
 GameObject:
