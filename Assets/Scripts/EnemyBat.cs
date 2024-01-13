@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyBat : MonoBehaviour
 {
     private int Hp = 10;
+    private int xpToGive = 5;
     public float speed;
 
     private Transform player;
@@ -45,5 +46,6 @@ public class EnemyBat : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+        PlayerController.instance.xp += xpToGive;
     }
 }

@@ -7,7 +7,7 @@ public class InGameMenuManager : MonoBehaviour
 {
     public GameObject menu, chatBox;
     public GameObject[] windows;
-    public Text health;
+    public Text health, lvl, xp;
 
     public ItemButton[] itemsBtns;
 
@@ -79,6 +79,8 @@ public class InGameMenuManager : MonoBehaviour
     public void updateStats()
     {
         health.text = $"Health: {PlayerController.instance.health.ToString()}";
+        lvl.text = $"Lvl: {PlayerController.instance.lvl.ToString()}";
+        xp.text = $"XP: {PlayerController.instance.xp.ToString()}";
     }
 
     

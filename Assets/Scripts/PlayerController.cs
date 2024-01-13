@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public int health = 100;
-    private float shootSpeed = 1;
+    public float shootSpeed = 1;
     public int damage = 10;
     private bool isAlive = true;
-    private int xp = 0;
-    private int lvl = 1;
+    public int xp = 0;
+    public int lvl = 1;
 
     public bool speedActive = false;
     private float speedTime = 5f;
@@ -101,6 +101,11 @@ public class PlayerController : MonoBehaviour
             isAlive = false;
             die();
         }
+
+        if(xp == 100)
+        {
+            LevelUp();
+        }
     }
 
     private void die()
@@ -146,5 +151,19 @@ public class PlayerController : MonoBehaviour
         isAlive = true;
         xp = 0;
         lvl = 1;
+    }
+
+    private void LevelUp()
+    {
+        xp = 0;
+        lvl++;
+        if(lvl%5 == 0)
+        {
+            damage += 10;
+        }
+        if(shootSpeed > 0)
+        {
+            shootSpeed -= 0.1f;
+        }
     }
 }

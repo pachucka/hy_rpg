@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private int Hp = 50;
+    private int xpToGive = 10;
 
     public float speed;
     public float stoppingDistance;
@@ -81,6 +82,8 @@ public class Enemy : MonoBehaviour
     private void die()
     {
         Destroy(gameObject);
+        PlayerController.instance.xp += xpToGive;
+
     }
 
     private void FlipSprite(float direction)
