@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public int health = 100;
     private float shootSpeed = 1;
     public int damage = 10;
+    private bool isAlive = true;
 
     public bool speedActive = false;
     private float speedTime = 5f;
@@ -91,6 +93,17 @@ public class PlayerController : MonoBehaviour
             }
             speedTime -= Time.deltaTime;
         }
+
+        if(health <= 0 && isAlive)
+        {
+            isAlive = false;
+            die();
+        }
+    }
+
+    private void die()
+    {
+        SceneManager.LoadSceneAsync("DeathScene");
     }
 
     private void UpdateShootPointPosition()

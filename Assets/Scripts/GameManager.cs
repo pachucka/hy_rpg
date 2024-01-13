@@ -26,13 +26,16 @@ public class GameManager : MonoBehaviour
     // controlling if Player can move
     private void Update()
     {
-        if(PlayerController.instance != null && (menuOpen || dialogueActive))
+        if(PlayerController.instance != null)
         {
-            PlayerController.instance.canMove = false;
-        }
-        else if(PlayerController.instance != null)
-        {
-            PlayerController.instance.canMove = true;
+            if (menuOpen || dialogueActive)
+            {
+                PlayerController.instance.canMove = false;
+            }
+            else
+            {
+                PlayerController.instance.canMove = true;
+            }
         }
     }
 
@@ -46,8 +49,16 @@ public class GameManager : MonoBehaviour
         transitionAnim.SetTrigger("End");
         menuOpen = true;
         yield return new WaitForSeconds(1);
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        Debug.Log("Loading next scene index: " + nextSceneIndex);
+
+        SceneManager.LoadSceneAsync(nextSceneIndex);
         transitionAnim.SetTrigger("Start");
         menuOpen = false;
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadSceneAsync(0);
     }
 }
