@@ -8,5 +8,6 @@ public class MainMenuManager : MonoBehaviour
     public void NextLevel()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        PlayerController.instance.resetStats();
     }
 }

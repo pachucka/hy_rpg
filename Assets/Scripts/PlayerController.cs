@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private float shootSpeed = 1;
     public int damage = 10;
     private bool isAlive = true;
+    private int xp = 0;
+    private int lvl = 1;
 
     public bool speedActive = false;
     private float speedTime = 5f;
@@ -134,5 +136,15 @@ public class PlayerController : MonoBehaviour
     public void speedUp()
     {
         speedActive = true;
+    }
+
+    public void resetStats()
+    {
+        health = 100;
+        shootSpeed = 1;
+        damage = 10;
+        isAlive = true;
+        xp = 0;
+        lvl = 1;
     }
 }
