@@ -16,8 +16,11 @@ public class EnemyBat : MonoBehaviour
 
     private void Update()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
-        transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        if (!GameManager.instance.menuOpen)
+        {
+            Vector2 direction = (player.position - transform.position).normalized;
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
