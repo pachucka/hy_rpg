@@ -10,16 +10,38 @@ public class GameManager : MonoBehaviour
     public bool menuOpen, dialogueActive;
     [SerializeField] Animator transitionAnim;
 
+    public Button newGame;
+
 
     private void Start()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-        } else
+        }
+        else
         {
             Destroy(gameObject);
+        }
+
+        //AssignFunctionToButton();
+    }
+
+    private void AssignFunctionToButton()
+    {
+        // ZnajdŸ przycisk w hierarchii sceny
+        Button yourButton = GameObject.Find("newGame").GetComponent<Button>(); // Zmieñ "YourButtonName" na nazwê Twojego przycisku
+
+        // SprawdŸ, czy znaleziono przycisk
+        if (yourButton != null)
+        {
+            // Przypisz funkcjê do zdarzenia klikniêcia przycisku
+            yourButton.onClick.AddListener(NextLevel);
+        }
+        else
+        {
+            Debug.LogWarning("Button not found in the scene with the name 'YourButtonName'");
         }
     }
 
@@ -41,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
+        Debug.Log("Button clicked!");
         StartCoroutine(LoadLevel());
     }
 
