@@ -26,11 +26,11 @@ public class GameManager : MonoBehaviour
     // controlling if Player can move
     private void Update()
     {
-        if(menuOpen || dialogueActive)
+        if(PlayerController.instance != null && (menuOpen || dialogueActive))
         {
             PlayerController.instance.canMove = false;
         }
-        else
+        else if(PlayerController.instance != null)
         {
             PlayerController.instance.canMove = true;
         }
