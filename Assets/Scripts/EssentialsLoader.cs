@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class EssentialsLoader : MonoBehaviour
 {
-    public GameObject UIScreen;
+    public GameObject gameManager;
     public GameObject player;
+    public GameObject uiCanvas;
 
     private void Awake()
     {
-        if(UIFade.instance == null)
+        if(GameManager.instance == null)
         {
-            Instantiate(UIScreen);
+            Instantiate(gameManager);
         }
         if (PlayerController.instance == null)
         {
             Instantiate(player);
         }
+        if (InventoryManager.instance == null)
+        {
+            Instantiate(uiCanvas);
+        }
+
     }
 }
