@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         originalMoveSpeed = moveSpeed;
+
+        Debug.Log("Initial Level: " + lvl);
     }
 
     // Update is called once per frame
@@ -155,15 +157,18 @@ public class PlayerController : MonoBehaviour
 
     private void LevelUp()
     {
+        Debug.Log(lvl);
+        Debug.Log("LevelUP");
         xp = 0;
-        lvl++;
-        if(lvl%5 == 0)
+        if(lvl % 5 == 0)
         {
+            Debug.Log("Increased strength on every 5th level");
             damage += 10;
         }
-        if(shootSpeed > 0)
+        if(timeBetweenShots > 0 && lvl % 3 == 0)
         {
-            shootSpeed -= 0.1f;
+            timeBetweenShots -= 0.1f;
         }
+        lvl++;
     }
 }

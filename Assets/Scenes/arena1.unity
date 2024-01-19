@@ -19116,7 +19116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 705002699113151606, guid: dc89785400d9bee4f82159b2efc0ef08, type: 3}
       propertyPath: numOfEnemies.Array.data[0]
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 705002699113151606, guid: dc89785400d9bee4f82159b2efc0ef08, type: 3}
       propertyPath: numOfEnemies.Array.data[1]
