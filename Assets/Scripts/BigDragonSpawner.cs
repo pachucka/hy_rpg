@@ -17,44 +17,47 @@ public class BigDragonSpawner : MonoBehaviour
     {
         while (true)
         {
-            spawnInterval = Random.Range(3f, 6f);
-            dragonAttackTime = Random.Range(2f, 7f);
-            bool spawnAtLeftWall = Random.Range(0, 2) == 0;
-
-            Vector2 spawnPosition = GetBorderPosition(spawnAtLeftWall);
-
-            GameObject dragon = Instantiate(dragonPrefab, spawnPosition, Quaternion.identity);
-            Transform fire = dragon.transform.Find("Fire"); // Ustawienie referencji fire na podstawie instancji smoka
-            if (fire != null)
+            if (!GameManager.instance.menuOpen)
             {
-                fire.gameObject.SetActive(false);
+                spawnInterval = Random.Range(3f, 6f);
+                dragonAttackTime = Random.Range(2f, 7f);
+                bool spawnAtLeftWall = Random.Range(0, 2) == 0;
+
+                Vector2 spawnPosition = GetBorderPosition(spawnAtLeftWall);
+
+                GameObject dragon = Instantiate(dragonPrefab, spawnPosition, Quaternion.identity);
+                Transform fire = dragon.transform.Find("Fire"); // Ustawienie referencji fire na podstawie instancji smoka
+                if (fire != null)
+                {
+                    fire.gameObject.SetActive(false);
+                }
+
+
+                if (!spawnAtLeftWall)
+                {
+                    dragon.transform.rotation *= Quaternion.Euler(0, 180, 0);
+                }
+
+                yield return new WaitForSeconds(2f);
+
+                if (fire != null)
+                {
+                    fire.gameObject.SetActive(true);
+                }
+
+                yield return new WaitForSeconds(dragonAttackTime);
+
+                if (fire != null)
+                {
+                    fire.gameObject.SetActive(false);
+                    Debug.Log("siema");
+                }
+
+                yield return new WaitForSeconds(2f);
+                Destroy(dragon);
+
+                yield return new WaitForSeconds(spawnInterval);
             }
-
-
-            if (!spawnAtLeftWall)
-            {
-                dragon.transform.rotation *= Quaternion.Euler(0, 180, 0);
-            }
-
-            yield return new WaitForSeconds(2f);
-
-            if (fire != null)
-            {
-                fire.gameObject.SetActive(true);
-            }
-
-            yield return new WaitForSeconds(dragonAttackTime);
-
-            if (fire != null)
-            {
-                fire.gameObject.SetActive(false);
-                Debug.Log("siema");
-            }
-
-            yield return new WaitForSeconds(2f);
-            Destroy(dragon);
-
-            yield return new WaitForSeconds(spawnInterval);
         }
     }
 

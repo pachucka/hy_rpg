@@ -22,7 +22,6 @@ public class InGameMenuManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Debug.Log("escape clicked");
                 InventoryManager.instance.listItems();
                 menu.SetActive(true);
                 GameManager.instance.menuOpen = true;
@@ -35,13 +34,12 @@ public class InGameMenuManager : MonoBehaviour
                 ActivateItemWindow();
             }
         } else if (menu.activeInHierarchy)
-        {
-            
-            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                closeMenu();
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    closeMenu();
+                }
             }
-        }
     }
     private void ActivateItemWindow()
     {

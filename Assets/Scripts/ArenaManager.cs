@@ -20,28 +20,31 @@ public class ArenaManager : MonoBehaviour
 
     void SpawnRandomEnemy()
     {
-        if (enemies.Length == 0 || numOfEnemies.Length == 0)
+        if (!GameManager.instance.menuOpen)
         {
-            Debug.LogError("No enemies to spawn");
-            return;
-        }
-
-        if(enemiesLeftToSpawn > 0)
-        {
-            int randomEnemyIndex = Random.Range(0, enemies.Length);
-            while (numOfEnemies[randomEnemyIndex] <= 0)
+            if (enemies.Length == 0 || numOfEnemies.Length == 0)
             {
-                randomEnemyIndex = Random.Range(0, enemies.Length);
+                Debug.LogError("No enemies to spawn");
+                return;
             }
 
-            numOfEnemies[randomEnemyIndex]--;
-            enemiesLeftToSpawn--;
+            if (enemiesLeftToSpawn > 0)
+            {
+                int randomEnemyIndex = Random.Range(0, enemies.Length);
+                while (numOfEnemies[randomEnemyIndex] <= 0)
+                {
+                    randomEnemyIndex = Random.Range(0, enemies.Length);
+                }
 
-            GameObject enemyPrefab = enemies[randomEnemyIndex];
+                numOfEnemies[randomEnemyIndex]--;
+                enemiesLeftToSpawn--;
 
-            Vector3 spawnPosition = GetRandomSpawnPosition();
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+                GameObject enemyPrefab = enemies[randomEnemyIndex];
 
+                Vector3 spawnPosition = GetRandomSpawnPosition();
+                Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+
+            }
         }
     }
 
@@ -50,6 +53,6 @@ public class ArenaManager : MonoBehaviour
         float randomX = Random.Range(-10f, 10f); // Zakres wspó³rzêdnych x
         float randomZ = Random.Range(-10f, 10f); // Zakres wspó³rzêdnych z
 
-        return new Vector3(randomX, 0f, randomZ); // Zak³adamy, ¿e wrogowie s¹ na p³aszczyŸnie y=0.
+        return new Vector3(randomX, 0f, randomZ);
     }
 }
