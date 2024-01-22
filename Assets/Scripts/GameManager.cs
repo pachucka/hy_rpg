@@ -66,10 +66,16 @@ public class GameManager : MonoBehaviour
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         Debug.Log("Loading next scene index: " + nextSceneIndex);
 
-        SceneManager.LoadSceneAsync(nextSceneIndex);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneIndex);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
         transitionAnim.SetTrigger("Start");
         menuOpen = false;
     }
+
 
     public void BackToMenu()
     {
@@ -116,5 +122,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("PlayerController.instance is null.");
         }
+    }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

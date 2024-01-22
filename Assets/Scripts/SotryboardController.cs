@@ -8,6 +8,7 @@ public class SotryboardController : MonoBehaviour
     public TextMeshProUGUI textToChange;
     public string[] texts;
     private int currentIndex = 0;
+    private Coroutine typingCoroutine;
 
     void Start()
     {
@@ -35,6 +36,11 @@ public class SotryboardController : MonoBehaviour
 
         if (currentIndex < texts.Length)
         {
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+
             UpdateText();
         }
         else
@@ -47,7 +53,7 @@ public class SotryboardController : MonoBehaviour
     {
         if (textToChange != null)
         {
-            StartCoroutine(TypeText(texts[currentIndex]));
+            typingCoroutine = StartCoroutine(TypeText(texts[currentIndex]));
         }
     }
 
@@ -63,6 +69,6 @@ public class SotryboardController : MonoBehaviour
 
     void LoadNextScene()
     {
-         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
