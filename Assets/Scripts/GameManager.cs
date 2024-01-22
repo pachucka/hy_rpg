@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(PlayerController.instance);
+        SaveSystem.SavePlayer(PlayerController.instance, InventoryManager.instance);
     }
 
     public void LoadPlayerDelayed()
