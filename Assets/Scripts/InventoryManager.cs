@@ -28,7 +28,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     public void addItem(Item item)

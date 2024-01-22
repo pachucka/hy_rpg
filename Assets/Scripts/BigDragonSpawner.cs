@@ -5,7 +5,7 @@ public class BigDragonSpawner : MonoBehaviour
 {
     public GameObject dragonPrefab;
     private float spawnInterval;
-    public float dragonAttackTime;
+    private float dragonAttackTime;
     public float mapBorderSize = 10f;
 
     void Start()
@@ -50,7 +50,6 @@ public class BigDragonSpawner : MonoBehaviour
                 if (fire != null)
                 {
                     fire.gameObject.SetActive(false);
-                    Debug.Log("siema");
                 }
 
                 yield return new WaitForSeconds(2f);
