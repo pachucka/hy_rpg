@@ -17,6 +17,7 @@ public class BigDragonSpawner : MonoBehaviour
     {
         while (true)
         {
+            // Dodaj sprawdzenie czy menu nie jest otwarte
             if (!GameManager.instance.menuOpen)
             {
                 spawnInterval = Random.Range(3f, 6f);
@@ -26,12 +27,12 @@ public class BigDragonSpawner : MonoBehaviour
                 Vector2 spawnPosition = GetBorderPosition(spawnAtLeftWall);
 
                 GameObject dragon = Instantiate(dragonPrefab, spawnPosition, Quaternion.identity);
-                Transform fire = dragon.transform.Find("Fire"); // Ustawienie referencji fire na podstawie instancji smoka
+                Transform fire = dragon.transform.Find("Fire");
+
                 if (fire != null)
                 {
                     fire.gameObject.SetActive(false);
                 }
-
 
                 if (!spawnAtLeftWall)
                 {
@@ -57,20 +58,13 @@ public class BigDragonSpawner : MonoBehaviour
 
                 yield return new WaitForSeconds(spawnInterval);
             }
+            else
+            {
+                // Dodaj opóŸnienie, aby unikn¹æ intensywnego zu¿ycia zasobów w przypadku, gdy menu jest otwarte
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 
-    Vector2 GetBorderPosition(bool spawnAtLeftWall)
-    {
-        float randomY = Random.Range(-10, 4);
 
-        if (spawnAtLeftWall)
-        {
-            return new Vector2(-mapBorderSize, randomY);
-        }
-        else
-        {
-            return new Vector2(mapBorderSize, randomY);
-        }
-    }
-}
+

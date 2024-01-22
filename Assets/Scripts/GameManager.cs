@@ -84,4 +84,29 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(0);
     }
+
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(PlayerController.instance);
+    }
+
+    public void LoadPlayer()
+    {
+        
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        SceneManager.LoadScene(data.scene);
+
+        PlayerController.instance.lvl = data.level;
+        PlayerController.instance.health = data.health;
+        PlayerController.instance.xp = data.xp;
+
+        
+
+        Vector3 positon;
+        positon.x = data.position[0];
+        positon.y = data.position[1];
+        positon.z = data.position[2];
+        PlayerController.instance.transform.position = positon;
+    }
 }
