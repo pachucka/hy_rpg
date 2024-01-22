@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ArenaManager : MonoBehaviour
 {
@@ -44,6 +45,9 @@ public class ArenaManager : MonoBehaviour
                 Vector3 spawnPosition = GetRandomSpawnPosition();
                 Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
 
+            } else
+            {
+                Invoke("EndArena", 5f);
             }
         }
     }
@@ -54,5 +58,10 @@ public class ArenaManager : MonoBehaviour
         float randomZ = Random.Range(-10f, 10f); // Zakres wspó³rzêdnych z
 
         return new Vector3(randomX, 0f, randomZ);
+    }
+
+    public void EndArena()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
