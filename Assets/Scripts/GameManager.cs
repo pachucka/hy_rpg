@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     private bool isPlayerLoaded = false;
 
+
     private void Start()
     {
         if (instance == null)
@@ -27,14 +28,18 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex > 0) // Ignoruj za³adowanie menu
+        Debug.Log("Scene loaded: " + scene.name);
+        if (scene.buildIndex > 0 && scene.name != "Start") // Ignoruj za³adowanie menu
         {
+            Debug.Log("Loading player...");
             if (!isPlayerLoaded)
             {
                 LoadPlayerDelayed();
             }
         }
     }
+
+
 
     private void Update()
     {
