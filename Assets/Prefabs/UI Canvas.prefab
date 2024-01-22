@@ -4651,6 +4651,18 @@ PrefabInstance:
       propertyPath: ItemContent
       value: 
       objectReference: {fileID: 6753193185869284342}
+    - target: {fileID: 6689473568236992963, guid: 92ce373c84c148f4b93402b7d3a25d07, type: 3}
+      propertyPath: Items.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689473568236992963, guid: 92ce373c84c148f4b93402b7d3a25d07, type: 3}
+      propertyPath: Items.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1851e70da5791874b9d53ef73c7f28c3, type: 2}
+    - target: {fileID: 6689473568236992963, guid: 92ce373c84c148f4b93402b7d3a25d07, type: 3}
+      propertyPath: Items.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cf3f27f4b72a9447b207fb838c9636f, type: 2}
     - target: {fileID: 6689473568236992964, guid: 92ce373c84c148f4b93402b7d3a25d07, type: 3}
       propertyPath: m_Name
       value: InventoryManager
