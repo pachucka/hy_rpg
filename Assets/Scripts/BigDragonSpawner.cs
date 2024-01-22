@@ -66,5 +66,17 @@ public class BigDragonSpawner : MonoBehaviour
         }
     }
 
+    Vector2 GetBorderPosition(bool spawnAtLeftWall)
+    {
+        float randomY = Random.Range(-10, 4);
 
-
+        if (spawnAtLeftWall)
+        {
+            return new Vector2(-mapBorderSize, randomY);
+        }
+        else
+        {
+            return new Vector2(mapBorderSize, randomY);
+        }
+    }
+}

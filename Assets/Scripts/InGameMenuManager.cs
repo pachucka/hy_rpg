@@ -81,8 +81,5 @@ public class InGameMenuManager : MonoBehaviour
         xp.text = $"XP: {PlayerController.instance.xp.ToString()}";
     }
 
-    public void SavePlayer()
-    {
-        SaveSystem.SavePlayer(PlayerController.instance);
-    }
+    
 }

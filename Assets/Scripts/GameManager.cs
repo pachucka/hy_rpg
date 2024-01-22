@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,8 +9,7 @@ public class GameManager : MonoBehaviour
     public bool menuOpen, dialogueActive;
     [SerializeField] Animator transitionAnim;
 
-    public Button newGame;
-
+    private bool isPlayerLoaded = false;
 
     private void Start()
     {
@@ -19,36 +17,29 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject);
         }
-
-        //AssignFunctionToButton();
     }
 
-    private void AssignFunctionToButton()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // ZnajdŸ przycisk w hierarchii sceny
-        Button yourButton = GameObject.Find("newGame").GetComponent<Button>(); // Zmieñ "YourButtonName" na nazwê Twojego przycisku
-
-        // SprawdŸ, czy znaleziono przycisk
-        if (yourButton != null)
+        if (scene.buildIndex > 0) // Ignoruj za³adowanie menu
         {
-            // Przypisz funkcjê do zdarzenia klikniêcia przycisku
-            yourButton.onClick.AddListener(NextLevel);
-        }
-        else
-        {
-            Debug.LogWarning("Button not found in the scene with the name 'YourButtonName'");
+            if (!isPlayerLoaded)
+            {
+                LoadPlayerDelayed();
+            }
         }
     }
 
-    // controlling if Player can move
     private void Update()
     {
-        if(PlayerController.instance != null)
+        // Kontrola ruchu gracza
+        if (PlayerController.instance != null)
         {
             if (menuOpen || dialogueActive)
             {
@@ -63,7 +54,6 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        Debug.Log("Button clicked!");
         StartCoroutine(LoadLevel());
     }
 
@@ -72,6 +62,7 @@ public class GameManager : MonoBehaviour
         transitionAnim.SetTrigger("End");
         menuOpen = true;
         yield return new WaitForSeconds(1);
+
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         Debug.Log("Loading next scene index: " + nextSceneIndex);
 
@@ -90,23 +81,40 @@ public class GameManager : MonoBehaviour
         SaveSystem.SavePlayer(PlayerController.instance);
     }
 
+    public void LoadPlayerDelayed()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        StartCoroutine(LoadPlayerCoroutine(data.scene));
+    }
+
+    IEnumerator LoadPlayerCoroutine(string sceneName)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        LoadPlayer();
+        isPlayerLoaded = true;
+    }
+
     public void LoadPlayer()
     {
-        
-        PlayerData data = SaveSystem.LoadPlayer();
+        if (PlayerController.instance != null)
+        {
+            PlayerData data = SaveSystem.LoadPlayer();
 
-        SceneManager.LoadScene(data.scene);
+            PlayerController.instance.lvl = data.level;
+            PlayerController.instance.health = data.health;
+            PlayerController.instance.xp = data.xp;
 
-        PlayerController.instance.lvl = data.level;
-        PlayerController.instance.health = data.health;
-        PlayerController.instance.xp = data.xp;
-
-        
-
-        Vector3 positon;
-        positon.x = data.position[0];
-        positon.y = data.position[1];
-        positon.z = data.position[2];
-        PlayerController.instance.transform.position = positon;
+            Vector3 position = new Vector3(data.position[0], data.position[1], data.position[2]);
+            PlayerController.instance.transform.position = position;
+        }
+        else
+        {
+            Debug.LogError("PlayerController.instance is null.");
+        }
     }
 }

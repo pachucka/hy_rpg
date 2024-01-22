@@ -18,19 +18,27 @@ public static class SaveSystem
 
     public static PlayerData LoadPlayer()
     {
-        string path = Application.persistentDataPath + "/player.fun";
-        if (File.Exists(path))
+        if(GameManager.instance != null)
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+            string path = Application.persistentDataPath + "/player.fun";
+            if (File.Exists(path))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                FileStream stream = new FileStream(path, FileMode.Open);
 
-            PlayerData data = formatter.Deserialize(stream) as PlayerData;
-            stream.Close();
+                PlayerData data = formatter.Deserialize(stream) as PlayerData;
+                stream.Close();
 
-            return data;
+                return data;
+            }
+            else
+            {
+                Debug.LogError("Save file not found in " + path);
+                return null;
+            }
         } else
         {
-            Debug.LogError("Save file not found in " + path);
+            Debug.LogError("No GameManager instance");
             return null;
         }
     }
