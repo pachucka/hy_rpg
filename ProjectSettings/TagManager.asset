@@ -9,6 +9,7 @@ TagManager:
   - Item
   - SmallDragon
   - Bat
+  - AutoDialogue
   layers:
   - Default
   - TransparentFX

@@ -26,6 +26,11 @@ public class DialogueActivator : MonoBehaviour
         if(other.tag == "Player")
         {
             canActivate = true;
+
+            if(this.tag == "AutoDialogue")
+            {
+                DialogueManager.instance.showDialogue(lines);
+            }
         }
     }
 
