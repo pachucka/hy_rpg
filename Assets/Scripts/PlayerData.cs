@@ -12,7 +12,7 @@ public class PlayerData
     public int xp;
     public float[] position;
     public string scene;
-    public int[] items;
+    //public float[] items;
 
     public PlayerData(PlayerController player, InventoryManager inventory)
     {
@@ -25,11 +25,11 @@ public class PlayerData
         position[1] = player.transform.position.y;
         position[2] = player.transform.position.z;
 
-        items = new int[inventory.Items.Count];
-        for (int i = 0; i < inventory.Items.Count; i++)
-        {
-            items[i] = inventory.Items[i].id;
-        }
+        //items = new float[inventory.Items.Count];
+        //for(int i = 0; i <= inventory.Items.Count; i++)
+        //{
+        //    items[i] = inventory.Items[i].id;
+        //}
 
         scene = SceneManager.GetActiveScene().name;
     }
