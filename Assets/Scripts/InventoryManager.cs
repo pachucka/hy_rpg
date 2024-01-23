@@ -8,6 +8,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
 
     public List<Item> Items = new List<Item>();
+    public Item[] allItems;
 
     public Transform ItemContent;
     public GameObject InventoryItem;
@@ -75,6 +76,17 @@ public class InventoryManager : MonoBehaviour
             Items.Remove(itemToRemove);
         }
 
+    }
+
+    public void AddItemByID(int id)
+    {
+        foreach(var item in allItems)
+        {
+            if(id == item.id)
+            {
+                addItem(item);
+            }
+        }
     }
 
     public void cleanList()
