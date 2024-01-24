@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            //SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -26,15 +26,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("Scene loaded: " + scene.name);
-        if (scene.buildIndex > 0 && scene.name != "Start" && !isPlayerLoaded) // Ignoruj za³adowanie menu
-        {
-            Debug.Log("Loading player...");
-            LoadPlayerDelayed();
-        }
-    }
+    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    Debug.Log("Scene loaded: " + scene.name);
+    //    if (scene.buildIndex > 0 && scene.name != "Start" && !isPlayerLoaded) // Ignoruj za³adowanie menu
+    //    {
+    //        Debug.Log("Loading player...");
+    //        LoadPlayerDelayed();
+    //    }
+    //}
 
 
 
@@ -79,6 +79,11 @@ public class GameManager : MonoBehaviour
 
         transitionAnim.SetTrigger("Start");
         menuOpen = false;
+        if (SceneManager.GetActiveScene().name == "Start")
+        {
+            InventoryManager.instance.cleanInventory();
+        }
+        InventoryManager.instance.cleanInventory();
     }
 
 
@@ -99,11 +104,6 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(LoadPlayerCoroutine(data.scene));
         }
-        else
-        {
-            // Jeœli brak danych gracza, zacznij now¹ grê
-            StartCoroutine(StartNewGameCoroutine());
-        }
     }
 
     IEnumerator LoadPlayerCoroutine(string sceneName)
@@ -118,21 +118,6 @@ public class GameManager : MonoBehaviour
 
         LoadPlayer();
         isPlayerLoaded = true;
-    }
-
-    IEnumerator StartNewGameCoroutine()
-    {
-        // Tu mo¿esz dodaæ dowolne dodatkowe operacje zwi¹zane z rozpoczêciem nowej gry
-        // Na przyk³ad wyczyszczenie ekwipunku, ustawienie domyœlnych wartoœci itp.
-
-        // W tym przypadku, zak³adam, ¿e InventoryManager posiada metodê do wyczyszczenia ekwipunku
-        //InventoryManager.instance.ClearInventory();
-
-        // Poczekaj chwilê przed ³adowaniem nowej sceny
-        yield return new WaitForSeconds(1);
-
-        // £aduj pierwsz¹ scenê gry (lub inn¹, jeœli wymaga to twoja logika gry)
-        SceneManager.LoadScene("Story1");
     }
 
 

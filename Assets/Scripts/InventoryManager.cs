@@ -97,4 +97,9 @@ public class InventoryManager : MonoBehaviour
             Destroy(item.gameObject);
         }
     }
+
+    public void cleanInventory()
+    {
+        Items.Clear();
+    }
 }

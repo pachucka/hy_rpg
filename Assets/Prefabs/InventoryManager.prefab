@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Items: []
+  allItems:
+  - {fileID: 11400000, guid: 1851e70da5791874b9d53ef73c7f28c3, type: 2}
+  - {fileID: 11400000, guid: 0cf3f27f4b72a9447b207fb838c9636f, type: 2}
   ItemContent: {fileID: 0}
   InventoryItem: {fileID: 5975909107500829340, guid: 4f4406f55f63e1649aafcfa5e01a3e3f, type: 3}
   INVENTORY_CAPACITY: 9
