@@ -145,6 +145,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void openSettings()
+    {
+
+    }
+
 
     public void Quit()
     {

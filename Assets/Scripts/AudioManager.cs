@@ -58,4 +58,24 @@ public class AudioManager : MonoBehaviour
             effectsSrc.PlayOneShot(snd.clip);
         }
     }
+
+    public void ToggleMusic()
+    {
+        musicSrc.mute = !musicSrc.mute;
+    }
+
+    public void ToggleEffects()
+    {
+        effectsSrc.mute = !effectsSrc.mute;
+    }
+
+    public void ChangeMusicVolume(float volume)
+    {
+        musicSrc.volume = volume;
+    }
+    
+    public void ChangeEffectsVolume(float volume)
+    {
+        effectsSrc.volume = volume;
+    }
 }
