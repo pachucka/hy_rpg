@@ -1,11 +1,10 @@
-
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-
     public static AudioManager instance;
 
     public Sound[] music;
@@ -15,7 +14,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -35,10 +34,11 @@ public class AudioManager : MonoBehaviour
     {
         Sound snd = Array.Find(music, x => x.name == name);
 
-        if(snd == null)
+        if (snd == null)
         {
             Debug.Log("Sound not found");
-        } else
+        }
+        else
         {
             musicSrc.clip = snd.clip;
             musicSrc.Play();
@@ -58,9 +58,4 @@ public class AudioManager : MonoBehaviour
             effectsSrc.PlayOneShot(snd.clip);
         }
     }
-=======
-    public Sound[] music;
-    public Sound[] effects;
-
-    public AudioSource musicSource, effectsSource;
 }
