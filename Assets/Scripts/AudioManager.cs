@@ -1,10 +1,11 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+
     public static AudioManager instance;
 
     public Sound[] music;
@@ -57,4 +58,9 @@ public class AudioManager : MonoBehaviour
             effectsSrc.PlayOneShot(snd.clip);
         }
     }
+=======
+    public Sound[] music;
+    public Sound[] effects;
+
+    public AudioSource musicSource, effectsSource;
 }
