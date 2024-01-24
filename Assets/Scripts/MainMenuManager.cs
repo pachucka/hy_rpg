@@ -7,7 +7,15 @@ public class MainMenuManager : MonoBehaviour
 {
     public void NextLevel()
     {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-        PlayerController.instance.resetStats();
+        // Upewnij siê, ¿e PlayerController.instance nie jest null
+        if (PlayerController.instance != null)
+        {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerController.instance.resetStats();
+        }
+        else
+        {
+            Debug.LogError("PlayerController.instance is null.");
+        }
     }
 }

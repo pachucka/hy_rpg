@@ -29,15 +29,13 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Scene loaded: " + scene.name);
-        if (scene.buildIndex > 0 && scene.name != "Start") // Ignoruj za³adowanie menu
+        if (scene.buildIndex > 0 && scene.name != "Start" && !isPlayerLoaded) // Ignoruj za³adowanie menu
         {
             Debug.Log("Loading player...");
-            if (!isPlayerLoaded)
-            {
-                LoadPlayerDelayed();
-            }
+            LoadPlayerDelayed();
         }
     }
+
 
 
 
@@ -59,6 +57,8 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
+        Debug.Log("Next Level button pressed");
+
         StartCoroutine(LoadLevel());
     }
 
@@ -95,11 +95,21 @@ public class GameManager : MonoBehaviour
     public void LoadPlayerDelayed()
     {
         PlayerData data = SaveSystem.LoadPlayer();
-        StartCoroutine(LoadPlayerCoroutine(data.scene));
+        if (data != null)
+        {
+            StartCoroutine(LoadPlayerCoroutine(data.scene));
+        }
+        else
+        {
+            // Jeœli brak danych gracza, zacznij now¹ grê
+            StartCoroutine(StartNewGameCoroutine());
+        }
     }
 
     IEnumerator LoadPlayerCoroutine(string sceneName)
     {
+        Debug.Log("Load Player Coroutine for scene: " + sceneName);
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         while (!asyncLoad.isDone)
         {
@@ -109,6 +119,22 @@ public class GameManager : MonoBehaviour
         LoadPlayer();
         isPlayerLoaded = true;
     }
+
+    IEnumerator StartNewGameCoroutine()
+    {
+        // Tu mo¿esz dodaæ dowolne dodatkowe operacje zwi¹zane z rozpoczêciem nowej gry
+        // Na przyk³ad wyczyszczenie ekwipunku, ustawienie domyœlnych wartoœci itp.
+
+        // W tym przypadku, zak³adam, ¿e InventoryManager posiada metodê do wyczyszczenia ekwipunku
+        //InventoryManager.instance.ClearInventory();
+
+        // Poczekaj chwilê przed ³adowaniem nowej sceny
+        yield return new WaitForSeconds(1);
+
+        // £aduj pierwsz¹ scenê gry (lub inn¹, jeœli wymaga to twoja logika gry)
+        SceneManager.LoadScene("Story1");
+    }
+
 
     public void LoadPlayer()
     {
@@ -123,7 +149,7 @@ public class GameManager : MonoBehaviour
             Vector3 position = new Vector3(data.position[0], data.position[1], data.position[2]);
             PlayerController.instance.transform.position = position;
 
-            for(int i = 0; i < data.items.Length; i++)
+            for (int i = 0; i < data.items.Length; i++)
             {
                 InventoryManager.instance.AddItemByID(data.items[i]);
             }
@@ -133,6 +159,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("PlayerController.instance is null.");
         }
     }
+
 
     public void Quit()
     {
