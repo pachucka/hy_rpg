@@ -19183,6 +19183,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8974424320111541520, guid: a29a0a6f647556d4c9b82fd6d9fb054a, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 8974424320111541520, guid: a29a0a6f647556d4c9b82fd6d9fb054a, type: 3}
       propertyPath: m_Name
       value: SpawnPoint
       objectReference: {fileID: 0}
@@ -19192,11 +19196,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8974424320111541534, guid: a29a0a6f647556d4c9b82fd6d9fb054a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.68
+      value: -0.63
       objectReference: {fileID: 0}
     - target: {fileID: 8974424320111541534, guid: a29a0a6f647556d4c9b82fd6d9fb054a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.66
+      value: -3.23
       objectReference: {fileID: 0}
     - target: {fileID: 8974424320111541534, guid: a29a0a6f647556d4c9b82fd6d9fb054a, type: 3}
       propertyPath: m_LocalPosition.z
