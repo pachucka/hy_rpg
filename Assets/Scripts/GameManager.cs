@@ -40,11 +40,11 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        if (data == null)
-        {
+        
             data = new PlayerData(PlayerController.instance, InventoryManager.instance);
+            data.scene = SceneManager.GetActiveScene().name;
             Debug.Log("Game saved");
-        }
+        
     }
 
 
