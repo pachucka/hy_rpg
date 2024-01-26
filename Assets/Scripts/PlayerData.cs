@@ -32,5 +32,6 @@ public class PlayerData
         }
 
         scene = SceneManager.GetActiveScene().name;
+        Debug.Log(scene);
     }
 }

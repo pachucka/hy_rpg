@@ -10,9 +10,9 @@ public static class SaveSystem
         string path = Application.persistentDataPath + "/player.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(player, inventory);
+        //PlayerData data = new PlayerData(player, inventory);
 
-        formatter.Serialize(stream, data);
+        formatter.Serialize(stream, GameManager.instance.data);
         stream.Close();
     }
 

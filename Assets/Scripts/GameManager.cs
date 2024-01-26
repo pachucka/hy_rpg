@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     //private bool isPlayerLoaded = false;
 
+    public PlayerData data;
+
 
     private void Start()
     {
@@ -18,7 +20,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            //SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -26,15 +28,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    //{
-    //    Debug.Log("Scene loaded: " + scene.name);
-    //    if (scene.buildIndex > 0 && scene.name != "Start" && !isPlayerLoaded) // Ignoruj za³adowanie menu
-    //    {
-    //        Debug.Log("Loading player...");
-    //        LoadPlayerDelayed();
-    //    }
-    //}
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine(OnSceneLoadedCoroutine(scene, mode));
+    }
+
+    private IEnumerator OnSceneLoadedCoroutine(Scene scene, LoadSceneMode mode)
+    {
+        while (PlayerController.instance == null)
+        {
+            yield return null;
+        }
+
+        data = new PlayerData(PlayerController.instance, InventoryManager.instance);
+        Debug.Log("Game saved");
+    }
+
 
 
 
