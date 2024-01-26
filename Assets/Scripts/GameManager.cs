@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public bool menuOpen, dialogueActive;
     [SerializeField] Animator transitionAnim;
 
-    private bool isPlayerLoaded = false;
+    //private bool isPlayerLoaded = false;
 
 
     private void Start()
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
         }
 
         LoadPlayer();
-        isPlayerLoaded = true;
+       // isPlayerLoaded = true;
     }
 
 
