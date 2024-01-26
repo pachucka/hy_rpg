@@ -40,12 +40,12 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        data = new PlayerData(PlayerController.instance, InventoryManager.instance);
-        Debug.Log("Game saved");
+        if (data == null)
+        {
+            data = new PlayerData(PlayerController.instance, InventoryManager.instance);
+            Debug.Log("Game saved");
+        }
     }
-
-
-
 
 
     private void Update()
@@ -92,7 +92,6 @@ public class GameManager : MonoBehaviour
         {
             InventoryManager.instance.cleanInventory();
         }
-        InventoryManager.instance.cleanInventory();
     }
 
 
@@ -132,31 +131,35 @@ public class GameManager : MonoBehaviour
 
     public void LoadPlayer()
     {
+        Debug.Log("Loading player data...");
         if (PlayerController.instance != null)
         {
-            PlayerData data = SaveSystem.LoadPlayer();
+            PlayerData loadedData = SaveSystem.LoadPlayer();
 
-            PlayerController.instance.lvl = data.level;
-            PlayerController.instance.health = data.health;
-            PlayerController.instance.xp = data.xp;
-
-            Vector3 position = new Vector3(data.position[0], data.position[1], data.position[2]);
-            PlayerController.instance.transform.position = position;
-
-            for (int i = 0; i < data.items.Length; i++)
+            if (loadedData != null)
             {
-                InventoryManager.instance.AddItemByID(data.items[i]);
+                PlayerController.instance.lvl = loadedData.level;
+                PlayerController.instance.health = loadedData.health;
+                PlayerController.instance.xp = loadedData.xp;
+
+                Vector3 position = new Vector3(loadedData.position[0], loadedData.position[1], loadedData.position[2]);
+                PlayerController.instance.transform.position = position;
+
+                foreach (var itemID in loadedData.items)
+                {
+                    Debug.Log("Adding item with ID: " + itemID);
+                    InventoryManager.instance.AddItemByID(itemID);
+                }
+            }
+            else
+            {
+                Debug.LogError("Failed to load player data.");
             }
         }
         else
         {
             Debug.LogError("PlayerController.instance is null.");
         }
-    }
-
-    public void openSettings()
-    {
-
     }
 
 
