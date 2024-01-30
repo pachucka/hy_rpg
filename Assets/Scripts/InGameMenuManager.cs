@@ -13,6 +13,20 @@ public class InGameMenuManager : MonoBehaviour
 
     public GameObject itemWindow;
 
+    public static InGameMenuManager instance;
+
+    private void Start()
+    {
+        if(InGameMenuManager.instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

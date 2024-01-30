@@ -59,13 +59,20 @@ public class SotryboardController : MonoBehaviour
 
     IEnumerator TypeText(string text)
     {
+        // Clear the existing text
         textToChange.text = "";
+
+        // Iterate through each character in the input text
         foreach (char letter in text)
         {
+            // Append the current letter to the displayed text
             textToChange.text += letter;
+
+            // Wait for a short duration to simulate typing speed
             yield return new WaitForSeconds(0.03f);
         }
     }
+
 
     void LoadNextScene()
     {

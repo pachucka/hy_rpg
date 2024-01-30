@@ -59,13 +59,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if the player can move
         if (canMove)
         {
+            // If the player is allowed to move, set the rigidbody's velocity based on input
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
-            isMoving = rb.velocity.magnitude > 0; // Aktualizuje isMoving w zale¿noœci od prêdkoœci gracza
+
+            // Update isMoving based on the player's velocity magnitude
+            isMoving = rb.velocity.magnitude > 0;
         }
         else
         {
+            // If movement is not allowed, set the rigidbody's velocity to zero
             rb.velocity = Vector2.zero;
         }
 
@@ -118,25 +123,36 @@ public class PlayerController : MonoBehaviour
     private void UpdateShootPointPosition()
     {
         Vector3 lookDirection = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0f).normalized;
+
+        // Calculate the angle of the shoot direction in degrees
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         float distanceFromPlayer = 0.5f;
-        Vector3 offset = lookDirection * distanceFromPlayer;
 
+        // Calculate the position of the shoot point
+        Vector3 offset = lookDirection * distanceFromPlayer;
         shootPoint.localPosition = offset;
+
+        // Rotate the shoot point to face the calculated angle
         shootPoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
 
     private void ShootTowardsMouse()
     {
+        // Check if the space key is pressed
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // Check if enough time has passed since the last shot
             if (shootSpeed <= 0)
             {
+                // Instantiate a projectile at the shoot point's position and rotation
                 Instantiate(projectile, shootPoint.position, shootPoint.rotation);
+
+                //Reset the shoot speed to the time between shots
                 shootSpeed = timeBetweenShots;
             }
         }
+        // Decrease the shoot speed over time
         shootSpeed -= Time.deltaTime;
     }
 

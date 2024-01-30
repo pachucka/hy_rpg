@@ -12,7 +12,7 @@ public class SpawnPoint : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // SprawdŸ, czy za³adowana scena jest t¹, na której znajduje siê obiekt SpawnPoint
+        // Check if the loaded scene is the one where Player object is on
         if (scene.name == gameObject.scene.name)
         {
             SetPlayerSpawnPoint();
@@ -21,17 +21,17 @@ public class SpawnPoint : MonoBehaviour
 
     private void SetPlayerSpawnPoint()
     {
-        // ZnajdŸ obiekt gracza
+        // Find player object
         GameObject player = GameObject.FindWithTag("Player");
 
         if (player != null)
         {
-            // Ustaw pozycjê gracza na pozycjê spawnpointa
+            // Set player's position to position of the spawn point
             player.transform.position = transform.position;
         }
         else
         {
-            Debug.LogError("Nie znaleziono obiektu gracza.");
+            Debug.LogError("Player not found");
         }
     }
 

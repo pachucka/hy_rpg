@@ -20,13 +20,13 @@ public class PlayerProjectile : MonoBehaviour
 
     private void Update()
     {
-        // Poruszaj strza³em w kierunku celu
+        // Move towards the target position
         transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-        // ŒledŸ przebyt¹ odleg³oœæ
+        // Track the distance traveled
         distanceTraveled += speed * Time.deltaTime;
 
-        // SprawdŸ, czy strza³ osi¹gn¹³ maksymaln¹ odleg³oœæ
+        // Check if the projectile has reached the maximum distance
         if (distanceTraveled >= constantDistance)
         {
             Destroy(gameObject);
@@ -35,12 +35,13 @@ public class PlayerProjectile : MonoBehaviour
 
     private void UpdateTargetPosition()
     {
-        // Uzyskaj pozycjê myszy w przestrzeni gry
+        // Get the mouse position in the game space
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        //// Ustaw targetPosition na sta³¹ odleg³oœæ od gracza w kierunku myszki
+        // Set targetPosition to a constant distance from the player towards the mouse
         targetPosition = (mousePosition - (Vector2)initialPosition).normalized * constantDistance + (Vector2)initialPosition;
     }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
