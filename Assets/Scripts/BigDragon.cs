@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BigDragon : MonoBehaviour
 {
     private int damage;
+    private int hp = 500;
     private bool dealDamage = false;
+
 
     private void Update()
     {
@@ -21,6 +24,10 @@ public class BigDragon : MonoBehaviour
         {
             dealDamage = true;
         }
+        if (other.CompareTag("PlayerProjectile") && SceneManager.GetActiveScene().name == "BossFight")
+        {
+            takeDamage(PlayerController.instance.damage);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -35,5 +42,10 @@ public class BigDragon : MonoBehaviour
     {
         PlayerController.instance.health -= 10;
         yield return new WaitForSeconds(0.5f);
+    }
+
+    private void takeDamage(int dmg)
+    {
+        hp -= dmg;
     }
 }
