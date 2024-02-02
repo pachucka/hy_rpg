@@ -9,6 +9,7 @@ public class EssentialsLoader : MonoBehaviour
     public GameObject gameManager;
     public GameObject player;
     public GameObject uiCanvas;
+    public GameObject audioManager;
 
     private void Awake()
     {
@@ -23,6 +24,10 @@ public class EssentialsLoader : MonoBehaviour
         if (InGameMenuManager.instance == null && SceneManager.GetActiveScene().name != "Menu")
         {
             Instantiate(uiCanvas);
+        }
+        if(AudioManager.instance == null)
+        {
+            Instantiate(audioManager);
         }
         if (FindObjectOfType<EventSystem>() == null)
         {

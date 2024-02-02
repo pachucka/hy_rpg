@@ -47,6 +47,7 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (!other.CompareTag("Player") && !other.CompareTag("Item"))
         {
+            Debug.Log(other.tag);
             if (other.CompareTag("SmallDragon"))
             {
                 other.GetComponent<Enemy>().TakeDamage(PlayerController.instance.damage);
