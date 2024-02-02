@@ -148,6 +148,9 @@ public class PlayerController : MonoBehaviour
                 // Instantiate a projectile at the shoot point's position and rotation
                 Instantiate(projectile, shootPoint.position, shootPoint.rotation);
 
+                // call Shooting SFX
+                AudioManager.instance.PlayEffects("Shoot");
+
                 //Reset the shoot speed to the time between shots
                 shootSpeed = timeBetweenShots;
             }

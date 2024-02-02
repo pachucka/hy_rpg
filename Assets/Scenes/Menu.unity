@@ -370,7 +370,9 @@ MonoBehaviour:
   music:
   - name: ambience
     clip: {fileID: 8300000, guid: 0f9afe08b776e4544bd5f09c23eccfe8, type: 3}
-  effects: []
+  effects:
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 5e1a9f876d3dafd47bc6b3dde25135fa, type: 3}
   musicSrc: {fileID: 381424373}
   effectsSrc: {fileID: 854278449}
 --- !u!114 &66659017 stripped

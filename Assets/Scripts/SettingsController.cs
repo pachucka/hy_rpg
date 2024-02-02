@@ -78,7 +78,7 @@ public class SettingsController : MonoBehaviour
     public void setQuality(int qualityIndex)
     {
         Debug.Log(QualitySettings.GetQualityLevel());
-        QualitySettings.SetQualityLevel(qualityIndex);
+        QualitySettings.SetQualityLevel(qualityIndex, true);
         Debug.Log(QualitySettings.GetQualityLevel());
     }
 
