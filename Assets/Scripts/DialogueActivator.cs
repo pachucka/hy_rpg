@@ -7,6 +7,7 @@ public class DialogueActivator : MonoBehaviour
     public string[] lines;
     public bool canActivate = false;
     public static DialogueActivator instance;
+    public bool seenDialogue = false;
 
     private void Start()
     {
@@ -15,7 +16,7 @@ public class DialogueActivator : MonoBehaviour
 
     private void Update()
     {
-        if(canActivate && Input.GetButtonDown("Fire1") && !DialogueManager.instance.dialogueBox.activeInHierarchy && !GameManager.instance.menuOpen)
+        if(canActivate && Input.GetButtonDown("Fire1") && !DialogueManager.instance.dialogueBox.activeInHierarchy && !GameManager.instance.menuOpen && !seenDialogue)
         {
             DialogueManager.instance.showDialogue(lines);
         }
@@ -23,13 +24,14 @@ public class DialogueActivator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && !seenDialogue)
         {
             canActivate = true;
 
             if(this.tag == "AutoDialogue")
             {
                 DialogueManager.instance.showDialogue(lines);
+                seenDialogue = true;
             }
         }
     }
