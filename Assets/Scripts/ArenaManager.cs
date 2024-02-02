@@ -23,6 +23,13 @@ public class ArenaManager : MonoBehaviour
     {
         if (!GameManager.instance.menuOpen)
         {
+            if(SceneManager.GetActiveScene().name == "BossFight")
+            {
+                if(BigDragonSpawner.instance.hp <= 0)
+                {
+                    Invoke("EndArena", 5f);
+                }
+            }
             if (enemies.Length == 0 || numOfEnemies.Length == 0)
             {
                 Debug.LogError("No enemies to spawn");
@@ -45,7 +52,7 @@ public class ArenaManager : MonoBehaviour
                 Vector3 spawnPosition = GetRandomSpawnPosition();
                 Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
 
-            } else
+            } else if(SceneManager.GetActiveScene().name != "BossFight")
             {
                 Invoke("EndArena", 5f);
             }

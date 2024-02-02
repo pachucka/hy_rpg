@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class BigDragon : MonoBehaviour
 {
     private int damage;
-    private int hp = 500;
     private bool dealDamage = false;
 
 
@@ -26,7 +25,7 @@ public class BigDragon : MonoBehaviour
         }
         if (other.CompareTag("PlayerProjectile") && SceneManager.GetActiveScene().name == "BossFight")
         {
-            takeDamage(PlayerController.instance.damage);
+            BigDragonSpawner.instance.takeDamage(PlayerController.instance.damage);
         }
     }
 
@@ -44,8 +43,4 @@ public class BigDragon : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
-    private void takeDamage(int dmg)
-    {
-        hp -= dmg;
-    }
 }

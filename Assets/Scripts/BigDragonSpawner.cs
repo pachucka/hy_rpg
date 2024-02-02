@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BigDragonSpawner : MonoBehaviour
 {
@@ -7,10 +8,26 @@ public class BigDragonSpawner : MonoBehaviour
     private float spawnInterval;
     private float dragonAttackTime;
     public float mapBorderSize = 10f;
+    public int hp = 500;
+
+    public GameObject boss;
+
+    public static BigDragonSpawner instance;
 
     void Start()
     {
-        StartCoroutine(SpawnDragons());
+        if(BigDragonSpawner.instance == null)
+        {
+            instance = this;
+        }
+
+        if(SceneManager.GetActiveScene().name == "BossFight")
+        {
+            StartCoroutine(BossFight());
+        } else
+        {
+            StartCoroutine(SpawnDragons());
+        }
     }
 
     IEnumerator SpawnDragons()
@@ -60,10 +77,63 @@ public class BigDragonSpawner : MonoBehaviour
             }
             else
             {
-                // Dodaj opóŸnienie, aby unikn¹æ intensywnego zu¿ycia zasobów w przypadku, gdy menu jest otwarte
                 yield return new WaitForSeconds(1f);
             }
         }
+    }
+
+    IEnumerator BossFight()
+    {
+        while (hp > 0)
+        {
+            if (!GameManager.instance.menuOpen)
+            {
+                spawnInterval = Random.Range(0.1f, 0.5f);
+                dragonAttackTime = Random.Range(2f, 3f);
+                bool spawnAtLeftWall = Random.Range(0, 2) == 0;
+
+                Vector2 spawnPosition = GetBorderPosition(spawnAtLeftWall);
+
+                GameObject dragon = Instantiate(dragonPrefab, spawnPosition, Quaternion.identity);
+                Transform fire = dragon.transform.Find("Fire");
+
+                if (fire != null)
+                {
+                    fire.gameObject.SetActive(false);
+                }
+
+                if (!spawnAtLeftWall)
+                {
+                    dragon.transform.rotation *= Quaternion.Euler(0, 180, 0);
+                }
+
+                yield return new WaitForSeconds(1f);
+
+                if (fire != null)
+                {
+                    fire.gameObject.SetActive(true);
+                }
+
+                yield return new WaitForSeconds(dragonAttackTime);
+
+                if (fire != null)
+                {
+                    fire.gameObject.SetActive(false);
+                }
+
+                yield return new WaitForSeconds(0.5f);
+                Destroy(dragon);
+
+                yield return new WaitForSeconds(spawnInterval);
+            }
+            else
+            {
+                yield return new WaitForSeconds(1f);
+            }
+        }
+
+
+
     }
 
     Vector2 GetBorderPosition(bool spawnAtLeftWall)
@@ -78,5 +148,10 @@ public class BigDragonSpawner : MonoBehaviour
         {
             return new Vector2(mapBorderSize, randomY);
         }
+    }
+
+    public void takeDamage(int dmg)
+    {
+        hp -= dmg;
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 671412263980135348}
   - component: {fileID: 6369825605157222368}
   - component: {fileID: 671412263980135351}
+  - component: {fileID: 7962106856546793458}
   m_Layer: 0
   m_Name: BigDragon
   m_TagString: Untagged
@@ -98,6 +99,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9367c98d4a3cb143b2dc5d2d7dc1c2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!60 &7962106856546793458
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671412263980135350}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.5501981, y: 0.8964597}
+      - {x: 0.16413578, y: 0.866413}
+      - {x: -0.47338003, y: 0.95864904}
+      - {x: -0.90351456, y: 0.49452907}
+      - {x: -0.9784673, y: -0.16082546}
+      - {x: -0.5745244, y: 0.19445857}
+      - {x: -0.9735499, y: -0.61843646}
+      - {x: -0.8877605, y: -0.76976514}
+      - {x: -1, y: -1}
+      - {x: -0.51455206, y: -0.9999999}
+      - {x: -0.45941794, y: -0.9035145}
+      - {x: -0.0044487733, y: -0.8922425}
+      - {x: 0.010336816, y: -0.99379975}
+      - {x: 1, y: -1}
+      - {x: 0.5796643, y: -0.5450984}
+      - {x: 0.44865462, y: 0.029617868}
+      - {x: 0.7504928, y: -0.10704121}
+      - {x: 0.87396634, y: 0.31503457}
+      - {x: 0.84837997, y: 0.807029}
 --- !u!1 &4907922081876124513
 GameObject:
   m_ObjectHideFlags: 0
