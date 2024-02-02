@@ -2,10 +2,11 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SotryboardController : MonoBehaviour
 {
-    public TextMeshProUGUI textToChange;
+    public Text textToChange;
     public string[] texts;
     private int currentIndex = 0;
     private Coroutine typingCoroutine;
