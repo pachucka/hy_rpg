@@ -47,16 +47,22 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (!other.CompareTag("Player") && !other.CompareTag("Item"))
         {
-            Debug.Log(other.tag);
-            if (other.CompareTag("SmallDragon"))
+            if(other.CompareTag("NPC"))
             {
-                other.GetComponent<Enemy>().TakeDamage(PlayerController.instance.damage);
-            }
-            if (other.CompareTag("Bat"))
+                return;
+            } else
             {
-                other.GetComponent<EnemyBat>().TakeDamage(PlayerController.instance.damage);
+                Debug.Log("PlayerProjectile collison with " + other.tag);
+                if (other.CompareTag("SmallDragon"))
+                {
+                    other.GetComponent<Enemy>().TakeDamage(PlayerController.instance.damage);
+                }
+                if (other.CompareTag("Bat"))
+                {
+                    other.GetComponent<EnemyBat>().TakeDamage(PlayerController.instance.damage);
+                }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
     }
 }
