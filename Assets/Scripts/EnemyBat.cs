@@ -17,12 +17,18 @@ public class EnemyBat : MonoBehaviour
 
     private void Update()
     {
+        // Check if the in-game menu is not open
         if (!GameManager.instance.menuOpen)
         {
+            // Calculate the direction from the current position to the player's position
             Vector2 direction = (player.position - transform.position).normalized;
+
+
+            // Move the object towards the player's position based on the calculated direction and speed
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
