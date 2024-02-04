@@ -10,6 +10,8 @@ public class ArenaManager : MonoBehaviour
     public float minSpawnInterval = 2f;
     public float maxSpawnInterval = 5f;
 
+    public float minX = -10, maxX = 10, minY = -10, maxY = 10;
+
     void Start()
     {
         for(int i = 0; i < numOfEnemies.Length; i++)
@@ -61,8 +63,8 @@ public class ArenaManager : MonoBehaviour
 
     Vector3 GetRandomSpawnPosition()
     {
-        float randomX = Random.Range(-10f, 10f); // Zakres wspó³rzêdnych x
-        float randomZ = Random.Range(-10f, 10f); // Zakres wspó³rzêdnych z
+        float randomX = Random.Range(minX, maxX); // Zakres wspó³rzêdnych x
+        float randomZ = Random.Range(minY, maxY); // Zakres wspó³rzêdnych z
 
         return new Vector3(randomX, 0f, randomZ);
     }
