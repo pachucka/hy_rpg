@@ -45,7 +45,7 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player") && !other.CompareTag("Item"))
+        if (!other.CompareTag("Player") && !other.CompareTag("Item") && !other.CompareTag("AutoDialogue") && !other.CompareTag("Other"))
         {
             if(other.CompareTag("NPC"))
             {
