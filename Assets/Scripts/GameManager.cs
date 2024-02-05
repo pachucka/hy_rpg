@@ -8,19 +8,16 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool menuOpen, dialogueActive;
     [SerializeField] Animator transitionAnim;
-
-    //private bool isPlayerLoaded = false;
-
     public PlayerData data;
 
-
-    private void Start()
+    private void Awake()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
+            Debug.Log("GameManager initialized.");
         }
         else
         {
@@ -30,22 +27,27 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Scene loaded: " + scene.name);
+
         StartCoroutine(OnSceneLoadedCoroutine(scene, mode));
     }
 
     private IEnumerator OnSceneLoadedCoroutine(Scene scene, LoadSceneMode mode)
     {
-        while (PlayerController.instance == null)
+        Debug.Log("Coroutine started");
+
+        while (PlayerController.instance == null || InventoryManager.instance == null)
         {
+            Debug.Log("Waiting for PlayerController and InventoryManager...");
             yield return null;
         }
 
-        
-            data = new PlayerData(PlayerController.instance, InventoryManager.instance);
-            data.scene = SceneManager.GetActiveScene().name;
-            Debug.Log("Game saved");
-        
+        data = new PlayerData(PlayerController.instance, InventoryManager.instance);
+        data.scene = SceneManager.GetActiveScene().name;
+        Debug.Log("Game saved");
     }
+
+
 
 
     private void Update()
@@ -126,6 +128,7 @@ public class GameManager : MonoBehaviour
 
     public void SavePlayer()
     {
+        Debug.Log("Click");
         SaveSystem.SavePlayer(PlayerController.instance, InventoryManager.instance);
     }
 

@@ -22821,7 +22821,7 @@ Transform:
   - {fileID: 2113407180}
   - {fileID: 2113479487}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2113407179
 GameObject:
@@ -27131,7 +27131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3446005652284361284, guid: a1d9152ba6d7c804c85ba0fde42a261e, type: 3}
       propertyPath: lines.Array.data[4]
-      value: Oh, you must be the persont sent here to save our world!
+      value: Oh, you must be the person sent here to save our world!
       objectReference: {fileID: 0}
     - target: {fileID: 3446005652284361284, guid: a1d9152ba6d7c804c85ba0fde42a261e, type: 3}
       propertyPath: lines.Array.data[5]
