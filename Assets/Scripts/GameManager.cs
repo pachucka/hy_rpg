@@ -71,6 +71,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadLevel());
     }
 
+    public void LoadLastLevel()
+    {
+        StartCoroutine(LoadLastLevelCoroutine());
+    }
+
     IEnumerator LoadLevel()
     {
         transitionAnim.SetTrigger("End");
@@ -92,6 +97,25 @@ public class GameManager : MonoBehaviour
         {
             InventoryManager.instance.cleanInventory();
         }
+    }
+
+    IEnumerator LoadLastLevelCoroutine()
+    {
+        transitionAnim.SetTrigger("End");
+        menuOpen = true;
+        yield return new WaitForSeconds(1);
+
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 2;
+        Debug.Log("Loading next scene index: " + nextSceneIndex);
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneIndex);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        transitionAnim.SetTrigger("Start");
+        menuOpen = false;
     }
 
 

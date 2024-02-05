@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
             die();
         }
 
-        if(xp == 100)
+        if(xp >= 100)
         {
             LevelUp();
         }

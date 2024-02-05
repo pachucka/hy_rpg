@@ -60,9 +60,54 @@ EditorBuildSettings:
     path: Assets/Scenes/Story2.unity
     guid: 7d426ad719a2984449f144cacedaae06
   - enabled: 1
+    path: Assets/Scenes/13.unity
+    guid: c1d125e71ab2ef0438659d7fb73051d2
+  - enabled: 1
+    path: Assets/Scenes/Story3.unity
+    guid: 611baf4dfc9af4a47ac6ecf824cf4159
+  - enabled: 1
+    path: Assets/Scenes/14.unity
+    guid: 07bee91469b69e241a11b13c34e3ec52
+  - enabled: 1
+    path: Assets/Scenes/Story4.unity
+    guid: ff10474118f79584a83e90da785df93f
+  - enabled: 1
+    path: Assets/Scenes/FinalArena.unity
+    guid: 2aa2d087c41a031449281600f8e32e93
+  - enabled: 1
+    path: Assets/Scenes/Story5.unity
+    guid: 412795f4d465bc84dbc100f36aeb34d6
+  - enabled: 1
+    path: Assets/Scenes/FinalArena 1.unity
+    guid: 097500c26bd26ab4b872fc780aa013f8
+  - enabled: 1
+    path: Assets/Scenes/Story6.unity
+    guid: 57cda76589476094cbf813e06d6dade4
+  - enabled: 1
+    path: Assets/Scenes/FinalArena 2.unity
+    guid: 880c7ae1a9c5d8b4d97d63b26886efdb
+  - enabled: 1
+    path: Assets/Scenes/Story7.unity
+    guid: 8c3e83d15e6e0f74abe4c0e61e57aab0
+  - enabled: 1
+    path: Assets/Scenes/FinalArena 3.unity
+    guid: bf9e6d63d62025048b804a5b91319a45
+  - enabled: 1
+    path: Assets/Scenes/Story8.unity
+    guid: 93bd940417773ed42909fa5333a9c8a9
+  - enabled: 1
+    path: Assets/Scenes/AfterFight.unity
+    guid: 62292319122e45947a414eb5b1edfb92
+  - enabled: 1
     path: Assets/Scenes/BossFight.unity
-    guid: d4606db5af3f13b46bd6f479281a9660
+    guid: c9d1a1a954895a8438a1a97f91b180c6
+  - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: 34bf36544a4e8b946a68a9358ba577f1
   - enabled: 1
     path: Assets/Scenes/DeathScene.unity
     guid: 4e3f0bef3636aa0478a098a783d67e32
+  - enabled: 1
+    path: Assets/Scenes/LastScene.unity
+    guid: 5c35887c1d0d3cd46b600c19795c1c7c
   m_configObjects: {}

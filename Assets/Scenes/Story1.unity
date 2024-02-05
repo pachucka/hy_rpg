@@ -290,6 +290,18 @@ PrefabInstance:
       propertyPath: textToChange
       value: 
       objectReference: {fileID: 1877430470959061462}
+    - target: {fileID: 1877430469260915212, guid: d3c425304c3f9094a8bfc45061e68bd7, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877430469260915212, guid: d3c425304c3f9094a8bfc45061e68bd7, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877430469260915212, guid: d3c425304c3f9094a8bfc45061e68bd7, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 1877430469260915214, guid: d3c425304c3f9094a8bfc45061e68bd7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -373,6 +385,14 @@ PrefabInstance:
     - target: {fileID: 1877430469260915214, guid: d3c425304c3f9094a8bfc45061e68bd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6131329186377909888, guid: d3c425304c3f9094a8bfc45061e68bd7, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 69
+      objectReference: {fileID: 0}
+    - target: {fileID: 6131329186377909888, guid: d3c425304c3f9094a8bfc45061e68bd7, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3c425304c3f9094a8bfc45061e68bd7, type: 3}

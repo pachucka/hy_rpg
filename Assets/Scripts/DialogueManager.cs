@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -41,8 +41,18 @@ public class DialogueManager : MonoBehaviour
                         if (currentLine >= dialogueLines.Length)
                         {
                             dialogueBox.SetActive(false);
-                            //PlayerController.instance.canMove = true;
-                            GameManager.instance.dialogueActive = false;
+
+                            // Dodano warunek sprawdzaj¹cy nazwê sceny
+                            if (SceneManager.GetActiveScene().name == "Home")
+                            {
+                                // Automatyczne prze³¹czenie na nastêpn¹ scenê
+                                GameManager.instance.LoadLastLevel();
+                            }
+                            else
+                            {
+                                //PlayerController.instance.canMove = true;
+                                GameManager.instance.dialogueActive = false;
+                            }
                         }
                         else
                         {
